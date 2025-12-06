@@ -1,70 +1,135 @@
-const output = document.getElementById("output");
+// ======================================================
+// Utility functions
+// ======================================================
 
-// Utility to display error messages
-function showError(message) {
-  output.textContent = message;
-  output.classList.remove("hidden");
+function showError(element, message) {
+  element.textContent = message;
+  element.classList.remove("hidden");
+  element.style.color = "var(--danger)";
 }
 
-// Utility to display success messages
-function showSuccess(message) {
-  output.textContent = message;
-  output.classList.remove("hidden");
-  output.style.color = "green";
+function showMessage(element, message) {
+  element.textContent = message;
+  element.classList.remove("hidden");
+  element.style.color = "var(--text)";
 }
 
 
-// -----------------------------------------
-// Button 1: Trigger JS runtime error
-// -----------------------------------------
-document.getElementById("throwError").addEventListener("click", () => {
+// ======================================================
+// 1. JavaScript Errors
+// ======================================================
+
+// Elements
+const jsErrorOutput = document.getElementById("jsErrorOutput");
+
+// Throw runtime JS error
+document.getElementById("throwJsError").addEventListener("click", () => {
   try {
-    // Deliberate undefined reference → runtime error
-    nonexistentFunctionCall();
+    nonExistingFunction(); // intentional error
   } catch (err) {
-    showError("A JavaScript error occurred: " + err.message);
+    showError(jsErrorOutput, "JavaScript error: " + err.message);
+  }
+});
+
+// Call undefined function
+document.getElementById("undefinedFunction").addEventListener("click", () => {
+  try {
+    window.thisFunctionDoesNotExist();
+  } catch (err) {
+    showError(jsErrorOutput, "Undefined function: " + err.message);
   }
 });
 
 
-// -----------------------------------------
-// Button 2: Call failing API
-// -----------------------------------------
-document.getElementById("badRequest").addEventListener("click", async () => {
-  output.textContent = "Calling failing API...";
-  output.classList.remove("hidden");
+// ======================================================
+// 2. API Error Simulation
+// ======================================================
+
+// Elements
+const apiErrorOutput = document.getElementById("apiErrorOutput");
+
+// Fake API endpoints simulation
+async function mockFetch(url) {
+  return new Promise((resolve, reject) => {
+    if (url === "/api/500") {
+      return setTimeout(() => {
+        resolve({
+          ok: false,
+          status: 500,
+          json: () => Promise.resolve({ error: "Internal Server Error" })
+        });
+      }, 500);
+    }
+
+    if (url === "/api/timeout") {
+      return setTimeout(() => reject(new Error("Connection timeout")), 3000);
+    }
+
+    if (url === "/api/bad-json") {
+      return setTimeout(() => {
+        resolve({
+          ok: true,
+          json: () => { throw new Error("Invalid JSON") }
+        });
+      }, 600);
+    }
+  });
+}
+
+// Simulate 500 error
+document.getElementById("api500").addEventListener("click", async () => {
+  showMessage(apiErrorOutput, "Calling API (expecting 500 error)...");
 
   try {
-    const res = await fetch("/api/fail");
+    const res = await mockFetch("/api/500");
     const data = await res.json();
 
     if (!res.ok) {
-      showError("API Error: " + data.error);
+      showError(apiErrorOutput, `API 500 Error: ${data.error}`);
       return;
     }
 
-    showSuccess("Unexpected success.");
-
   } catch (err) {
-    showError("Network error: " + err.message);
+    showError(apiErrorOutput, "Unexpected network error: " + err.message);
+  }
+});
+
+// Simulate timeout
+document.getElementById("apiTimeout").addEventListener("click", async () => {
+  showMessage(apiErrorOutput, "Waiting for slow API...");
+
+  try {
+    await mockFetch("/api/timeout");
+    showMessage(apiErrorOutput, "Unexpected success.");
+  } catch (err) {
+    showError(apiErrorOutput, "API timeout: " + err.message);
+  }
+});
+
+// Simulate invalid JSON
+document.getElementById("apiInvalidJson").addEventListener("click", async () => {
+  showMessage(apiErrorOutput, "Calling API returning invalid JSON...");
+
+  try {
+    const res = await mockFetch("/api/bad-json");
+    const data = await res.json();
+    showMessage(apiErrorOutput, "Unexpected success: " + data);
+  } catch (err) {
+    showError(apiErrorOutput, "Invalid JSON: " + err.message);
   }
 });
 
 
-// -----------------------------------------
-// Button 3: Call slow API (3 sec delay)
-// -----------------------------------------
-document.getElementById("timeoutRequest").addEventListener("click", async () => {
-  output.textContent = "Waiting for slow API (3s)...";
-  output.classList.remove("hidden");
+// ======================================================
+// 3. Slow UI Response
+// ======================================================
 
-  try {
-    const res = await fetch("/api/slow");
-    const data = await res.json();
+const slowOutput = document.getElementById("slowUiOutput");
 
-    showSuccess("Success: " + data.message);
+document.getElementById("slowUi").addEventListener("click", () => {
+  showMessage(slowOutput, "Processing…");
 
-  } catch (err) {
-    showError("Network error: " + err.message);
-  }
+  setTimeout(() => {
+    showMessage(slowOutput, "UI update completed after delay.");
+  }, 2500);
 });
