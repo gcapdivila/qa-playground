@@ -12,22 +12,34 @@
   <main role="main" aria-labelledby="errors-title">
     <h1 id="errors-title">Error Scenarios</h1>
 
-    <button id="throwError"
-            aria-label="Trigger JavaScript error">
-      Trigger JS Error
-    </button>
+    <section aria-label="Error test buttons">
 
-    <button id="badRequest"
-            aria-label="Call failing API endpoint">
-      Call Failing API
-    </button>
+      <button id="throwError"
+              aria-label="Trigger a JavaScript error">
+        Trigger JS Error
+      </button>
+
+      <button id="badRequest"
+              aria-label="Call an API that returns an error">
+        Call Failing API
+      </button>
+
+      <button id="timeoutRequest"
+              aria-label="Simulate a slow API or timeout">
+        Call Slow API (3s)
+      </button>
+
+    </section>
 
     <p id="output"
-       role="alert"
-       aria-live="assertive"></p>
+       class="error"
+       aria-live="assertive"
+       role="alert"></p>
+
   </main>
 
   <script src="js/api.js"></script>
   <script src="js/errors.js"></script>
+
 </body>
 </html>
