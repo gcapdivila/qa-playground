@@ -221,3 +221,118 @@ th {
 .hidden {
   display: none;
 }
+
+/* ===========================
+   VISUAL REGRESSION COMPONENTS
+   =========================== */
+
+#visual-area {
+  max-width: 600px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Banner */
+.banner {
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.banner-info {
+  background: #e3f2fd;
+  color: #0d47a1;
+}
+
+/* Card */
+.card {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.card-title {
+  margin-top: 0;
+}
+
+.card-content {
+  margin-bottom: 12px;
+}
+
+/* Buttons */
+.primary-btn {
+  background: #2e7d32;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 4px;
+  border: none;
+}
+
+.primary-btn:hover {
+  background: #1b5e20;
+}
+
+.secondary-btn {
+  background: #0277bd;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 4px;
+  border: none;
+}
+
+.secondary-btn:hover {
+  background: #01579b;
+}
+
+.danger-btn {
+  background: #c62828;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 4px;
+  border: none;
+}
+
+.danger-btn:hover {
+  background: #8e0000;
+}
+
+/* Form box */
+.form-box {
+  background: white;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.form-box input,
+.form-box select {
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+/* Button row */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout-btn {
+  margin-left: auto;
+  background: #c62828;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #8e0000;
+}

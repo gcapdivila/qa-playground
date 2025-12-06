@@ -8,17 +8,57 @@
 <body>
 
   <script src="js/layout.js"></script>
+  <script src="js/utils.js"></script>
+  <script> requireAuth(); </script>
 
   <main role="main" aria-labelledby="visual-title">
     <h1 id="visual-title">Visual Regression Test Page</h1>
 
-    <section role="region" aria-label="Visual components">
-      <div class="card" role="article">Simple card element</div>
+    <section id="visual-area"
+             role="region"
+             aria-label="Stable visual components for screenshot testing">
 
-      <button class="primary" role="button">Primary Button</button>
-      <button class="secondary" role="button">Secondary Button</button>
+      <!-- Banner -->
+      <div class="banner banner-info" role="status">
+        This is an informational banner.
+      </div>
+
+      <!-- Card -->
+      <div class="card" role="article">
+        <h2 class="card-title">Example Card</h2>
+        <p class="card-content">
+          This is a simple card used for screenshot comparisons.
+        </p>
+        <button class="primary-btn" aria-label="Card action button">
+          Action
+        </button>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-box" role="form" aria-label="Example form fields">
+        <label for="vis-input">Example Input</label>
+        <input id="vis-input" placeholder="Type something..." />
+
+        <label for="vis-select">Example Select</label>
+        <select id="vis-select">
+          <option>Option A</option>
+          <option>Option B</option>
+          <option>Option C</option>
+        </select>
+
+        <button class="secondary-btn" aria-label="Submit form example">
+          Submit
+        </button>
+      </div>
+
+      <!-- Buttons Area -->
+      <div class="button-row" role="group" aria-label="Button examples">
+        <button class="primary-btn">Primary</button>
+        <button class="secondary-btn">Secondary</button>
+        <button class="danger-btn">Danger</button>
+      </div>
+
     </section>
-
   </main>
 
 </body>

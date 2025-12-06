@@ -1,3 +1,12 @@
+const urlParams = new URLSearchParams(window.location.search);
+const redirected = urlParams.get("redirect");
+
+if (redirected) {
+  const error = document.getElementById("error");
+  error.textContent = "Please login to access this page.";
+  error.classList.remove("hidden");
+}
+
 document.getElementById("loginBtn").addEventListener("click", async () => {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
