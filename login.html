@@ -5,43 +5,41 @@
   <title>Login – QA Playground</title>
   <link rel="stylesheet" href="css/theme.css" />
 </head>
+
 <body>
 
   <script src="js/utils.js"></script>
   <script src="js/layout.js"></script>
 
   <main role="main" aria-labelledby="login-title">
-    <div class="container" role="form">
-      <h1 id="login-title">Login</h1>
 
-      <div class="login-box">
-        <label for="username">Username</label>
-        <input id="username"
-               placeholder="Enter username"
-               aria-required="true"
-               aria-label="Username field" />
+    <section class="container" role="form" aria-describedby="login-description">
 
-        <label for="password">Password</label>
-        <input id="password"
-               type="password"
-               placeholder="Enter password"
-               aria-required="true"
-               aria-label="Password field" />
+      <h1 id="login-title" style="text-align:center; margin-bottom:10px;">
+        Login
+      </h1>
 
-        <button id="loginBtn"
-                aria-label="Submit login information">
-          Login
-        </button>
+      <p id="login-description" style="opacity:0.8; margin-bottom:20px; text-align:center;">
+        Please enter your credentials to access the protected sections of the playground.
+      </p>
 
-        <p id="error"
-           class="error hidden"
-           aria-live="assertive"
-           role="alert"></p>
-      </div>
-    </div>
+      <label for="username">Username</label>
+      <input id="username" type="text" placeholder="Enter username" aria-required="true" />
+
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="Enter password" aria-required="true" />
+
+      <button id="loginBtn" class="primary-btn" style="width:100%; margin-top:10px;">
+        Login
+      </button>
+
+      <p id="error" class="error hidden" aria-live="assertive"></p>
+
+    </section>
+
   </main>
 
-  <script src="js/api.js"></script>
   <script src="js/login.js"></script>
+
 </body>
 </html>

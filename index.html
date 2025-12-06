@@ -11,17 +11,34 @@
   <script src="js/layout.js"></script>
 
   <main role="main" aria-labelledby="home-title">
-    <h1 id="home-title">QA Playground</h1>
-    <p>Welcome to this test sandbox. Select a page to explore:</p>
 
-    <ul role="list">
-      <li><a href="login.html">Login Flow</a></li>
-      <li><a href="form.html">Multi-step Form</a></li>
-      <li><a href="table.html">Dynamic Table</a></li>
-      <li><a href="actions.html">UI Actions</a></li>
-      <li><a href="errors.html">Error Scenarios</a></li>
-      <li><a href="visual.html">Visual Regression</a></li>
-    </ul>
+    <!-- Hero section -->
+    <section style="text-align:center; margin-bottom:30px;">
+      <h1 id="home-title">QA Playground</h1>
+      <p style="font-size:1.05em; opacity:0.85; margin-top:10px;">
+        A lightweight sandbox to demonstrate UI automation, workflows, visual regression
+        and error handling for QA engineering.
+      </p>
+    </section>
+
+    <!-- Card listing all available pages -->
+    <section class="card" aria-label="Available test pages">
+      <h2>Explore the test areas</h2>
+      <p style="margin: 8px 0 16px; opacity:0.9;">
+        Each page focuses on a specific aspect of testing and can be used
+        as a target for Playwright, Selenium, Robot Framework or API tools.
+      </p>
+
+      <ul style="line-height:1.9; list-style:disc; padding-left:20px;">
+        <li><a href="login.html">Login Flow</a> – authentication, token storage, redirection.</li>
+        <li><a href="form.html">Multi-step Form</a> – step navigation, validation, summary.</li>
+        <li><a href="table.html">Dynamic Table</a> – API-driven content, DOM updates, errors.</li>
+        <li><a href="actions.html">UI Actions</a> – modals, loaders, dynamic messages.</li>
+        <li><a href="errors.html">Error Scenarios</a> – JS errors, failing and slow APIs.</li>
+        <li><a href="visual.html">Visual Regression</a> – stable components for screenshots.</li>
+      </ul>
+    </section>
+
   </main>
 
 </body>

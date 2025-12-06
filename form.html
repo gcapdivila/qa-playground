@@ -5,19 +5,29 @@
   <title>Multi-step Form – QA Playground</title>
   <link rel="stylesheet" href="css/theme.css" />
 </head>
+
 <body>
 
   <script src="js/utils.js"></script>
   <script src="js/layout.js"></script>
-  <script> requireAuth(); </script>
+  <script>requireAuth();</script>
 
   <main role="main" aria-labelledby="form-title">
-    <h1 id="form-title">Multi-step Form</h1>
 
-    <section id="formContainer"
-             role="region"
-             aria-label="Form steps area">
+    <!-- Header -->
+    <section style="margin-bottom: 25px;">
+      <h1 id="form-title">Multi-step Form</h1>
+      <p style="opacity:0.85; margin-top:10px;">
+        This page demonstrates a multi-step workflow with validation, navigation controls,
+        and a final summary screen.  
+        Ideal for practicing automation techniques involving conditional visibility,
+        step transitions, and form assertions.
+      </p>
     </section>
+
+    <!-- Form container filled dynamically by form.js -->
+    <section id="formContainer" aria-live="polite"></section>
+
   </main>
 
   <script src="js/form.js"></script>

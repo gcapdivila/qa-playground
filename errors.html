@@ -5,42 +5,90 @@
   <title>Error Scenarios – QA Playground</title>
   <link rel="stylesheet" href="css/theme.css" />
 </head>
+
 <body>
 
   <script src="js/utils.js"></script>
   <script src="js/layout.js"></script>
-
+  <script>requireAuth();</script>
 
   <main role="main" aria-labelledby="errors-title">
-    <h1 id="errors-title">Error Scenarios</h1>
 
-    <section aria-label="Error test buttons">
-
-      <button id="throwError"
-              aria-label="Trigger a JavaScript error">
-        Trigger JS Error
-      </button>
-
-      <button id="badRequest"
-              aria-label="Call an API that returns an error">
-        Call Failing API
-      </button>
-
-      <button id="timeoutRequest"
-              aria-label="Simulate a slow API or timeout">
-        Call Slow API (3s)
-      </button>
-
+    <!-- Header -->
+    <section style="margin-bottom: 25px;">
+      <h1 id="errors-title">Error Scenarios</h1>
+      <p style="opacity:0.85; margin-top:10px;">
+        This page intentionally generates UI and API failures to test error-handling logic,
+        automation strategies, and validation of failure states.
+      </p>
     </section>
 
-    <p id="output"
-       class="error"
-       aria-live="assertive"
-       role="alert"></p>
+    <!-- SECTION 1 — JavaScript Errors -->
+    <section class="card" aria-labelledby="js-errors-title">
+      <h2 id="js-errors-title">JavaScript Errors</h2>
+
+      <p style="opacity:0.8; margin-bottom:15px;">
+        These buttons trigger JS exceptions. Useful for validating error boundaries,
+        logging, and automation retry strategies.
+      </p>
+
+      <button id="throwJsError" class="danger-btn">
+        Throw JS Error
+      </button>
+
+      <button id="undefinedFunction" class="danger-btn" style="margin-top:10px;">
+        Call Undefined Function
+      </button>
+
+      <p id="jsErrorOutput" aria-live="assertive" class="error hidden" style="margin-top:15px;"></p>
+    </section>
+
+    <!-- SECTION 2 — API Errors -->
+    <section class="card" aria-labelledby="api-errors-title">
+      <h2 id="api-errors-title">API Error Simulation</h2>
+
+      <p style="opacity:0.8; margin-bottom:15px;">
+        Simulates API failures (500 errors, timeouts, invalid JSON).  
+        Ideal for testing:  
+        – retry logic  
+        – async error handling  
+        – UI fallbacks  
+        – loading states
+      </p>
+
+      <button id="api500" class="primary-btn">
+        Simulate 500 Error
+      </button>
+
+      <button id="apiTimeout" class="secondary-btn" style="margin-top:10px;">
+        Simulate Timeout
+      </button>
+
+      <button id="apiInvalidJson" class="secondary-btn" style="margin-top:10px;">
+        Invalid JSON Response
+      </button>
+
+      <p id="apiErrorOutput" aria-live="assertive" class="error hidden" style="margin-top:15px;"></p>
+    </section>
+
+    <!-- SECTION 3 — Slow UI Response -->
+    <section class="card" aria-labelledby="slow-ui-title">
+      <h2 id="slow-ui-title">Slow UI Response</h2>
+
+      <p style="opacity:0.8; margin-bottom:15px;">
+        This simulates a slow UI update, causing delays in DOM rendering.  
+        Useful for testing waits, timeouts, and loading indicators.
+      </p>
+
+      <button id="slowUi" class="primary-btn">
+        Trigger Slow UI
+      </button>
+
+      <p id="slowUiOutput" aria-live="polite" style="margin-top:15px;"></p>
+    </section>
 
   </main>
 
-  <script src="js/api.js"></script>
   <script src="js/errors.js"></script>
 
 </body>

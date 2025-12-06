@@ -5,60 +5,69 @@
   <title>Visual Regression – QA Playground</title>
   <link rel="stylesheet" href="css/theme.css" />
 </head>
+
 <body>
 
   <script src="js/utils.js"></script>
   <script src="js/layout.js"></script>
-  <script> requireAuth(); </script>
+  <script>requireAuth();</script>
 
   <main role="main" aria-labelledby="visual-title">
-    <h1 id="visual-title">Visual Regression Test Page</h1>
 
-    <section id="visual-area"
-             role="region"
-             aria-label="Stable visual components for screenshot testing">
+    <!-- Header -->
+    <section style="margin-bottom: 25px;">
+      <h1 id="visual-title">Visual Regression Test</h1>
+      <p style="opacity:0.85; margin-top:10px;">
+        This page contains stable UI components specifically designed for screenshot comparison.
+        Use this section to validate layout integrity, theme consistency, and unexpected visual changes.
+      </p>
+    </section>
+
+    <!-- Main Visual Test Area -->
+    <section id="visual-area">
 
       <!-- Banner -->
-      <div class="banner banner-info" role="status">
-        This is an informational banner.
+      <div class="banner banner-info">
+        🔍 This is an informational banner used for visual validation.
       </div>
 
-      <!-- Card -->
-      <div class="card" role="article">
-        <h2 class="card-title">Example Card</h2>
+      <!-- Card Component -->
+      <div class="card">
+        <h2 class="card-title">Example Card Component</h2>
         <p class="card-content">
-          This is a simple card used for screenshot comparisons.
+          This card is intentionally simple and stable.  
+          It is ideal for baseline screenshots and regression testing.
         </p>
-        <button class="primary-btn" aria-label="Card action button">
-          Action
-        </button>
+
+        <div class="button-row">
+          <button class="primary-btn">Primary Action</button>
+          <button class="secondary-btn">Secondary Action</button>
+          <button class="danger-btn">Danger Action</button>
+        </div>
       </div>
 
-      <!-- Form Section -->
-      <div class="form-box" role="form" aria-label="Example form fields">
-        <label for="vis-input">Example Input</label>
-        <input id="vis-input" placeholder="Type something..." />
+      <!-- Form Box Component -->
+      <div class="form-box">
+        <h2>Form Input Box</h2>
+        <p style="opacity:0.8; margin-bottom:10px;">
+          A simple form area for testing visual input alignment and theming.
+        </p>
 
-        <label for="vis-select">Example Select</label>
-        <select id="vis-select">
-          <option>Option A</option>
-          <option>Option B</option>
-          <option>Option C</option>
+        <label for="sampleInput">Sample Input</label>
+        <input id="sampleInput" type="text" placeholder="Type something..." />
+
+        <label for="sampleSelect">Sample Select</label>
+        <select id="sampleSelect">
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
         </select>
 
-        <button class="secondary-btn" aria-label="Submit form example">
-          Submit
-        </button>
-      </div>
-
-      <!-- Buttons Area -->
-      <div class="button-row" role="group" aria-label="Button examples">
-        <button class="primary-btn">Primary</button>
-        <button class="secondary-btn">Secondary</button>
-        <button class="danger-btn">Danger</button>
+        <button class="primary-btn">Submit</button>
       </div>
 
     </section>
+
   </main>
 
 </body>

@@ -5,43 +5,57 @@
   <title>Dynamic Table – QA Playground</title>
   <link rel="stylesheet" href="css/theme.css" />
 </head>
+
 <body>
 
   <script src="js/utils.js"></script>
   <script src="js/layout.js"></script>
-  <script> requireAuth(); </script>
+  <script>requireAuth();</script>
 
   <main role="main" aria-labelledby="table-title">
-    <h1 id="table-title">Dynamic Table</h1>
 
-    <section aria-label="User data table">
-      <button id="loadUsers" aria-label="Load user data">Load Users</button>
+    <!-- Page Header -->
+    <section style="margin-bottom: 25px;">
+      <h1 id="table-title">Dynamic Table</h1>
+      <p style="opacity:0.85; margin-top:10px;">
+        This page loads user data from a simulated API. It is ideal for testing DOM updates,
+        table assertions, async loading, and error handling.
+      </p>
+    </section>
 
-      <table id="userTable"
-             role="table"
-             aria-label="User information"
-             class="hidden">
+    <!-- Card: Load Users -->
+    <section class="card" aria-labelledby="load-users-title">
+      <h2 id="load-users-title">Load User Data</h2>
+
+      <p style="opacity:0.8; margin-bottom:15px;">
+        Click the button to fetch and display a list of users.  
+        Use automation tools to validate table content, structure, and failure scenarios.
+      </p>
+
+      <button id="loadUsers" class="primary-btn">
+        Load Users
+      </button>
+
+      <!-- Error Message -->
+      <p id="tableError" class="error hidden" aria-live="assertive" style="margin-top:15px;"></p>
+    </section>
+
+    <!-- Table -->
+    <section aria-label="User list">
+      <table id="userTable" class="hidden" aria-describedby="load-users-title">
         <thead>
-          <tr role="row">
-            <th role="columnheader">ID</th>
-            <th role="columnheader">Name</th>
-            <th role="columnheader">Role</th>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
           </tr>
         </thead>
-
-        <tbody role="rowgroup" id="tableBody">
-        </tbody>
+        <tbody id="tableBody"></tbody>
       </table>
-
-      <p id="tableError"
-         role="alert"
-         aria-live="assertive"
-         class="error hidden"></p>
     </section>
 
   </main>
 
-  <script src="js/api.js"></script>
   <script src="js/table.js"></script>
 
 </body>

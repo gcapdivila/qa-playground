@@ -5,55 +5,59 @@
   <title>UI Actions – QA Playground</title>
   <link rel="stylesheet" href="css/theme.css" />
 </head>
+
 <body>
 
   <script src="js/utils.js"></script>
   <script src="js/layout.js"></script>
-  <script> requireAuth(); </script>
+  <script>requireAuth();</script>
 
   <main role="main" aria-labelledby="actions-title">
-    <h1 id="actions-title">UI Actions</h1>
 
-    <section aria-label="Interactive components">
-
-      <button id="openModal"
-              aria-haspopup="dialog"
-              aria-controls="modal">
-        Open Modal
-      </button>
-
-      <button id="showLoader"
-              aria-label="Show loading indicator for 2 seconds">
-        Show Loader (2s)
-      </button>
-
-      <button id="randomMessage"
-              aria-label="Generate random message">
-        Generate Random Message
-      </button>
-
-      <p id="messageOutput"
-         aria-live="polite"></p>
-
+    <!-- Page Header -->
+    <section style="margin-bottom: 25px;">
+      <h1 id="actions-title">UI Actions</h1>
+      <p style="opacity:0.85; margin-top:10px;">
+        This page demonstrates interactive elements commonly used in UI automation:
+        modal windows, loaders, and dynamic content generation.
+      </p>
     </section>
 
-    <!-- Modal -->
-    <div id="modal"
-         class="modal hidden"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="modal-title">
-      <h2 id="modal-title">Example Modal</h2>
-      <p>This is a modal window.</p>
-      <button id="closeModal" aria-label="Close modal">Close</button>
-    </div>
+    <!-- Card 1 – Modal & Loader -->
+    <section class="card" aria-labelledby="interactive-elements-title">
+      <h2 id="interactive-elements-title">Interactive UI Elements</h2>
 
-    <!-- Loader -->
-    <div id="loader"
-         class="loader hidden"
-         role="status"
-         aria-live="polite"
-         aria-label="Loading indicator">
+      <p style="opacity:0.8; margin-bottom:15px;">
+        Useful for testing visibility toggles, animations, waiting conditions, and ARIA updates.
+      </p>
+
+      <button id="openModal" class="primary-btn">Open Modal</button>
+      <button id="showLoader" class="secondary-btn">Show Loader (2s)</button>
+
+      <!-- Loader -->
+      <div id="loader" class="loader hidden" aria-live="polite"></div>
+    </section>
+
+    <!-- Card 2 – Dynamic Content -->
+    <section class="card" aria-labelledby="dynamic-content-title">
+      <h2 id="dynamic-content-title">Dynamic Content</h2>
+
+      <p style="opacity:0.8; margin-bottom:15px;">
+        Content below is generated on demand and is ideal for validating DOM updates in automation scripts.
+      </p>
+
+      <button id="randomMessage" class="primary-btn">Generate Random Message</button>
+
+      <p id="messageOutput" aria-live="polite" style="margin-top:15px;"></p>
+    </section>
+
+    <!-- Modal window -->
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">Example Modal</h2>
+      <p>This modal is used for testing click actions, overlays, and visibility control.</p>
+      <button id="closeModal" class="secondary-btn" style="margin-top:15px;">
+        Close
+      </button>
     </div>
 
   </main>
