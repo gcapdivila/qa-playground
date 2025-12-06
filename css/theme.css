@@ -166,3 +166,36 @@ button:hover {
 section button {
   display: block;
 }
+
+.form-step {
+  background: white;
+  padding: 20px;
+  margin: 20px auto;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.form-step h2 {
+  margin-top: 0;
+}
+
+.form-step input,
+.form-step select {
+  width: 100%;
+  padding: 10px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.form-nav button {
+  padding: 10px 14px;
+  border-radius: 4px;
+}
