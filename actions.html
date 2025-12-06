@@ -12,16 +12,28 @@
   <main role="main" aria-labelledby="actions-title">
     <h1 id="actions-title">UI Actions</h1>
 
-    <button id="openModal"
-            aria-haspopup="dialog"
-            aria-controls="modal">
-      Open Modal
-    </button>
+    <section aria-label="Interactive components">
 
-    <button id="showLoader"
-            aria-label="Show loading indicator">
-      Show Loader (2s)
-    </button>
+      <button id="openModal"
+              aria-haspopup="dialog"
+              aria-controls="modal">
+        Open Modal
+      </button>
+
+      <button id="showLoader"
+              aria-label="Show loading indicator for 2 seconds">
+        Show Loader (2s)
+      </button>
+
+      <button id="randomMessage"
+              aria-label="Generate random message">
+        Generate Random Message
+      </button>
+
+      <p id="messageOutput"
+         aria-live="polite"></p>
+
+    </section>
 
     <!-- Modal -->
     <div id="modal"
@@ -41,6 +53,7 @@
          aria-live="polite"
          aria-label="Loading indicator">
     </div>
+
   </main>
 
   <script src="js/actions.js"></script>
