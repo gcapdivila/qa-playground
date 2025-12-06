@@ -7,18 +7,40 @@
 </head>
 <body>
 
-  <h1>Login</h1>
-
-  <div>
-    <input id="username" placeholder="Username" />
-    <input id="password" type="password" placeholder="Password" />
-    <button id="loginBtn">Login</button>
-    <p id="error" class="hidden"></p>
-  </div>
-
   <script src="js/layout.js"></script>
+
+  <main role="main" aria-labelledby="login-title">
+    <div class="container" role="form">
+      <h1 id="login-title">Login</h1>
+
+      <div class="login-box">
+        <label for="username">Username</label>
+        <input id="username"
+               placeholder="Enter username"
+               aria-required="true"
+               aria-label="Username field" />
+
+        <label for="password">Password</label>
+        <input id="password"
+               type="password"
+               placeholder="Enter password"
+               aria-required="true"
+               aria-label="Password field" />
+
+        <button id="loginBtn"
+                aria-label="Submit login information">
+          Login
+        </button>
+
+        <p id="error"
+           class="error hidden"
+           aria-live="assertive"
+           role="alert"></p>
+      </div>
+    </div>
+  </main>
+
   <script src="js/api.js"></script>
   <script src="js/login.js"></script>
-
 </body>
 </html>

@@ -7,13 +7,19 @@
 </head>
 <body>
 
-  <h1>Visual Regression Test Page</h1>
-
-  <div class="card">Simple card element</div>
-  <button class="primary">Primary button</button>
-  <button class="secondary">Secondary button</button>
-
   <script src="js/layout.js"></script>
+
+  <main role="main" aria-labelledby="visual-title">
+    <h1 id="visual-title">Visual Regression Test Page</h1>
+
+    <section role="region" aria-label="Visual components">
+      <div class="card" role="article">Simple card element</div>
+
+      <button class="primary" role="button">Primary Button</button>
+      <button class="secondary" role="button">Secondary Button</button>
+    </section>
+
+  </main>
 
 </body>
 </html>

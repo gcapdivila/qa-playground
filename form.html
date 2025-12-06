@@ -2,17 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Form – QA Playground</title>
+  <title>Multi-step Form – QA Playground</title>
   <link rel="stylesheet" href="css/theme.css" />
 </head>
 <body>
 
-  <h1>Multi-step Form</h1>
-
-  <div id="formContainer"></div>
-
   <script src="js/layout.js"></script>
-  <script src="js/form.js"></script>
 
+  <main role="main" aria-labelledby="form-title">
+    <h1 id="form-title">Multi-step Form</h1>
+
+    <section id="formContainer"
+             role="region"
+             aria-label="Form steps area">
+    </section>
+  </main>
+
+  <script src="js/form.js"></script>
 </body>
 </html>

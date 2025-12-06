@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Table – QA Playground</title>
+  <title>Dynamic Table – QA Playground</title>
   <link rel="stylesheet" href="css/theme.css" />
 </head>
 <body>
 
-  <h1>Dynamic Table</h1>
-
-  <div id="tableContainer"></div>
-
   <script src="js/layout.js"></script>
+
+  <main role="main" aria-labelledby="table-title">
+    <h1 id="table-title">Dynamic Table</h1>
+
+    <section id="tableContainer"
+             role="region"
+             aria-label="User data table">
+    </section>
+  </main>
+
   <script src="js/api.js"></script>
   <script src="js/table.js"></script>
-
 </body>
 </html>
