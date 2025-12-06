@@ -16,42 +16,83 @@
 
     <!-- Page Header -->
     <section style="margin-bottom: 25px;">
-      <h1 id="table-title">Dynamic Table</h1>
+      <h1 id="table-title">Dynamic User Table</h1>
       <p style="opacity:0.85; margin-top:10px;">
-        This page loads user data from a simulated API. It is ideal for testing DOM updates,
-        table assertions, async loading, and error handling.
+        This page exposes a realistic, interactive data table with filtering, sorting,
+        pagination, inline editing and row creation.  
+        It is designed as a rich target for UI automation and end-to-end testing.
       </p>
     </section>
 
-    <!-- Card: Load Users -->
+    <!-- Card: Add User -->
+    <section class="card" aria-labelledby="add-user-title">
+      <h2 id="add-user-title">Add User</h2>
+
+      <p style="opacity:0.8; margin-bottom:10px;">
+        Create a new user to validate dynamic insertion, data consistency and table refresh logic.
+      </p>
+
+      <div class="add-user-row">
+        <input id="addName" type="text" placeholder="Name (required)" />
+        <select id="addRole">
+          <option value="Admin">Admin</option>
+          <option value="User" selected>User</option>
+          <option value="Guest">Guest</option>
+        </select>
+        <button id="addUserBtn" class="primary-btn">Add</button>
+      </div>
+
+      <p id="tableError" class="error hidden" aria-live="assertive"></p>
+    </section>
+
+    <!-- Card: Filters & Table -->
     <section class="card" aria-labelledby="load-users-title">
-      <h2 id="load-users-title">Load User Data</h2>
+      <h2 id="load-users-title">User List</h2>
 
       <p style="opacity:0.8; margin-bottom:15px;">
-        Click the button to fetch and display a list of users.  
-        Use automation tools to validate table content, structure, and failure scenarios.
+        Use the filters, sorting and pagination controls below to explore different test scenarios.
       </p>
 
-      <button id="loadUsers" class="primary-btn">
-        Load Users
-      </button>
+      <!-- FILTERS & PAGE SIZE -->
+      <div class="filter-row">
+        <input id="filterName" type="text" placeholder="Filter by name..." />
+        <select id="filterRole">
+          <option value="">All roles</option>
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+          <option value="Guest">Guest</option>
+        </select>
 
-      <!-- Error Message -->
-      <p id="tableError" class="error hidden" aria-live="assertive" style="margin-top:15px;"></p>
-    </section>
+        <select id="pageSize">
+          <option value="5" selected>5 / page</option>
+          <option value="10">10 / page</option>
+          <option value="20">20 / page</option>
+        </select>
 
-    <!-- Table -->
-    <section aria-label="User list">
-      <table id="userTable" class="hidden" aria-describedby="load-users-title">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Role</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
+        <button id="resetFilters" class="secondary-btn">Reset</button>
+      </div>
+
+      <!-- TABLE -->
+      <div style="margin-top: 10px;">
+        <table id="userTable" aria-label="User information table">
+          <thead>
+            <tr>
+              <th data-sort="id">ID</th>
+              <th data-sort="name">Name</th>
+              <th data-sort="role">Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- PAGINATION -->
+      <div class="pagination" aria-label="Table pagination controls">
+        <button id="prevPage" class="secondary-btn">Prev</button>
+        <span id="pageInfo"></span>
+        <button id="nextPage" class="secondary-btn">Next</button>
+      </div>
     </section>
 
   </main>
