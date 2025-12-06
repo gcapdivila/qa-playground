@@ -1,6 +1,10 @@
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
+  margin: 0;
+  padding-top: 60px; /* space for fixed navbar */
+  background: #f7f7f7;
+  color: #333;
 }
 
 .hidden {
@@ -26,4 +30,43 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: #222;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+}
+
+.nav-brand {
+  font-weight: bold;
+  color: #61dafb;
+  text-decoration: none;
+  margin-right: 40px;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
 }
