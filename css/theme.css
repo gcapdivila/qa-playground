@@ -336,3 +336,64 @@ th {
 .logout-btn:hover {
   background: #8e0000;
 }
+
+.theme-toggle-btn {
+  margin-left: 12px;
+  background: #444;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.theme-toggle-btn:hover {
+  background: #666;
+}
+
+/* ===========================
+   DARK MODE 
+   =========================== */
+
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .container,
+body.dark-mode .form-step,
+body.dark-mode .card,
+body.dark-mode .form-box {
+  background: #1e1e1e;
+  border-color: #333;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background: #222;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+body.dark-mode table,
+body.dark-mode th,
+body.dark-mode td {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #333;
+}
+
+/* Buttons adapt to dark mode */
+body.dark-mode button {
+  opacity: 0.9;
+}
+
+body.dark-mode .navbar {
+  background: #000;
+}
+
+body.dark-mode .banner-info {
+  background: #0d47a1;
+  color: #e3f2fd;
+}

@@ -30,3 +30,26 @@ function initializeAuthUI() {
     logoutBtn.classList.add("hidden");
   }
 }
+
+initializeThemeToggle();
+
+function initializeThemeToggle() {
+  const themeToggle = document.getElementById("themeToggle");
+
+  if (!themeToggle) return;
+
+  // Apply saved theme
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.textContent = "☀️";
+  }
+
+  themeToggle.addEventListener("click", () => {
+    const isDark = document.body.classList.toggle("dark-mode");
+
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+}
