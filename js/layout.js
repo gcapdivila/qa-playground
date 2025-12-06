@@ -6,11 +6,12 @@ async function loadHeader() {
   const html = await res.text();
   headerContainer.innerHTML = html;
 
+  // Maintenant que le header est là, on peut initialiser
   initializeAuthUI();
+  initializeThemeToggle();
 }
 
 loadHeader();
-
 
 function initializeAuthUI() {
   const logoutBtn = document.getElementById("logoutBtn");
@@ -19,37 +20,39 @@ function initializeAuthUI() {
   const token = localStorage.getItem("token");
 
   if (token) {
-    // Logged in
-    logoutBtn.classList.remove("hidden");
-    logoutBtn.addEventListener("click", logout);
+    if (logoutBtn) {
+      logoutBtn.classList.remove("hidden");
+      logoutBtn.addEventListener("click", logout);
+    }
 
-    if (loginLink) loginLink.parentElement.classList.add("hidden");
+    if (loginLink && loginLink.parentElement) {
+      loginLink.parentElement.classList.add("hidden");
+    }
 
   } else {
-    // Not logged in
-    logoutBtn.classList.add("hidden");
+    if (logoutBtn) {
+      logoutBtn.classList.add("hidden");
+    }
   }
 }
 
-initializeThemeToggle();
-
 function initializeThemeToggle() {
   const themeToggle = document.getElementById("themeToggle");
-
   if (!themeToggle) return;
 
-  // Apply saved theme
+  // Appliquer le thème sauvegardé
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.body.classList.add("dark-mode");
     themeToggle.textContent = "☀️";
+  } else {
+    themeToggle.textContent = "🌙";
   }
 
   themeToggle.addEventListener("click", () => {
     const isDark = document.body.classList.toggle("dark-mode");
 
     themeToggle.textContent = isDark ? "☀️" : "🌙";
-
     localStorage.setItem("theme", isDark ? "dark" : "light");
   });
 }
