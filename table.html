@@ -12,13 +12,35 @@
   <main role="main" aria-labelledby="table-title">
     <h1 id="table-title">Dynamic Table</h1>
 
-    <section id="tableContainer"
-             role="region"
-             aria-label="User data table">
+    <section aria-label="User data table">
+      <button id="loadUsers" aria-label="Load user data">Load Users</button>
+
+      <table id="userTable"
+             role="table"
+             aria-label="User information"
+             class="hidden">
+        <thead>
+          <tr role="row">
+            <th role="columnheader">ID</th>
+            <th role="columnheader">Name</th>
+            <th role="columnheader">Role</th>
+          </tr>
+        </thead>
+
+        <tbody role="rowgroup" id="tableBody">
+        </tbody>
+      </table>
+
+      <p id="tableError"
+         role="alert"
+         aria-live="assertive"
+         class="error hidden"></p>
     </section>
+
   </main>
 
   <script src="js/api.js"></script>
   <script src="js/table.js"></script>
+
 </body>
 </html>
