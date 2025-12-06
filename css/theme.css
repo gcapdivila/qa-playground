@@ -112,6 +112,13 @@ main {
   background: var(--secondary-hover);
 }
 
+/* Active link highlight */
+.nav-links a.active-link {
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: underline;
+}
+
 /* =========================================
    BUTTONS
    ========================================= */

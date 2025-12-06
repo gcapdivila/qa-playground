@@ -9,6 +9,7 @@ async function loadHeader() {
   // Maintenant que le header est là, on peut initialiser
   initializeAuthUI();
   initializeThemeToggle();
+  highlightActiveLink();
 }
 
 loadHeader();
@@ -34,6 +35,18 @@ function initializeAuthUI() {
       logoutBtn.classList.add("hidden");
     }
   }
+}
+
+function highlightActiveLink() {
+  const currentPage = window.location.pathname.split("/").pop(); // e.g. "visual.html"
+
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    const linkPage = link.getAttribute("href");
+
+    if (linkPage === currentPage) {
+      link.classList.add("active-link");
+    }
+  });
 }
 
 function initializeThemeToggle() {
