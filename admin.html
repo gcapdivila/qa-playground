@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel – QA Playground</title>
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+
+<body>
+
+  <!-- Utilities + Navbar -->
+  <script src="js/utils.js"></script>
+  <!-- Access control -->
+  <script>
+    requireRole("admin");
+  </script>
+  <script src="js/layout.js"></script>
+
+  <main>
+    <section class="container" style="max-width:600px;">
+      <h1 style="margin-bottom:10px;">Admin Panel</h1>
+
+      <p style="opacity:0.8; margin-bottom:20px;">
+        You have administrative rights on this QA Playground.
+      </p>
+
+      <div class="card" style="margin-bottom:20px;">
+        <h2 class="card-title">Current User</h2>
+
+        <p><strong>Username:</strong> <span id="admin-username"></span></p>
+        <p><strong>Role:</strong> <span id="admin-role"></span></p>
+
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Available Admin Actions</h2>
+
+        <p style="opacity:0.8;">
+          (For now, this is a placeholder.  
+          Later, we can add user management, logs, API simulation, and more.)
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Fill in admin info
+    const user = currentUser();
+    document.getElementById("admin-username").textContent = user.username;
+    document.getElementById("admin-role").textContent = user.role;
+  </script>
+
+</body>
+</html>

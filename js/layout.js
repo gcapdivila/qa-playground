@@ -17,8 +17,10 @@ loadHeader();
 function initializeAuthUI() {
   const logoutBtn = document.getElementById("logoutBtn");
   const loginLink = document.querySelector('a[href="login.html"]');
+  const adminLink = document.getElementById("adminLink");
 
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
 
   if (token) {
     if (logoutBtn) {
@@ -30,9 +32,21 @@ function initializeAuthUI() {
       loginLink.parentElement.classList.add("hidden");
     }
 
+    // Show admin link only for admin role
+    if (adminLink) {
+      if (role !== "admin") {
+        adminLink.parentElement.style.display = "none";
+      }
+    }
+
   } else {
     if (logoutBtn) {
       logoutBtn.classList.add("hidden");
+    }
+
+    // Hide admin link for not logged users
+    if (adminLink) {
+      adminLink.parentElement.style.display = "none";
     }
   }
 }

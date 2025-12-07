@@ -1,7 +1,13 @@
 // ===============================
+// ROLE-BASED PERMISSIONS
+// ===============================
+const role = localStorage.getItem("role");
+const canEdit = role === "editor" || role === "admin";
+const canAdd = role === "admin";
+
+// ===============================
 // DATA
 // ===============================
-
 const INITIAL_USERS = [
   { id: 1, name: "Anna Smith", role: "Admin" },
   { id: 2, name: "John Doe", role: "User" },
@@ -25,8 +31,8 @@ let filters = {
 };
 
 let sortState = {
-  field: null, // "id" | "name" | "role"
-  direction: null // "asc" | "desc" | null
+  field: null,      // "id" | "name" | "role"
+  direction: null   // "asc" | "desc" | null
 };
 
 let pageSize = 5;
@@ -36,7 +42,6 @@ let editingId = null;
 // ===============================
 // DOM ELEMENTS
 // ===============================
-
 const tableBody = document.getElementById("tableBody");
 const pageInfo = document.getElementById("pageInfo");
 const filterNameInput = document.getElementById("filterName");
@@ -50,11 +55,16 @@ const tableError = document.getElementById("tableError");
 const addNameInput = document.getElementById("addName");
 const addRoleSelect = document.getElementById("addRole");
 const addUserBtn = document.getElementById("addUserBtn");
+const addUserRow = addUserBtn ? addUserBtn.closest(".add-user-row") : null;
+
+// Masquer la zone d'ajout si le rôle ne le permet pas
+if (!canAdd && addUserRow) {
+  addUserRow.classList.add("hidden");
+}
 
 // ===============================
 // HELPERS
 // ===============================
-
 function setError(message) {
   if (!tableError) return;
   if (!message) {
@@ -129,7 +139,6 @@ function toggleSort(field) {
 // ===============================
 // RENDER
 // ===============================
-
 function renderTable() {
   const data = getProcessedData();
 
@@ -159,7 +168,7 @@ function renderTable() {
       const row = document.createElement("tr");
       row.dataset.id = user.id;
 
-      if (editingId === user.id) {
+      if (editingId === user.id && canEdit) {
         row.classList.add("editable-row");
 
         // ID (non éditable)
@@ -180,11 +189,11 @@ function renderTable() {
         const roleCell = document.createElement("td");
         const roleSelect = document.createElement("select");
         roleSelect.name = "editRole";
-        ["Admin", "User", "Guest"].forEach(role => {
+        ["Admin", "User", "Guest"].forEach(r => {
           const opt = document.createElement("option");
-          opt.value = role;
-          opt.textContent = role;
-          if (role === user.role) opt.selected = true;
+          opt.value = r;
+          opt.textContent = r;
+          if (r === user.role) opt.selected = true;
           roleSelect.appendChild(opt);
         });
         roleCell.appendChild(roleSelect);
@@ -226,11 +235,18 @@ function renderTable() {
 
         // Actions
         const actionsCell = document.createElement("td");
-        const editBtn = document.createElement("button");
-        editBtn.textContent = "Edit";
-        editBtn.className = "secondary-btn";
-        editBtn.dataset.action = "edit";
-        actionsCell.appendChild(editBtn);
+
+        if (canEdit) {
+          const editBtn = document.createElement("button");
+          editBtn.textContent = "Edit";
+          editBtn.className = "secondary-btn";
+          editBtn.dataset.action = "edit";
+          actionsCell.appendChild(editBtn);
+        } else {
+          actionsCell.textContent = "Read-only";
+          actionsCell.style.opacity = "0.7";
+        }
+
         row.appendChild(actionsCell);
       }
 
@@ -302,31 +318,38 @@ document.querySelectorAll("th[data-sort]").forEach(th => {
   });
 });
 
-// Add user
-addUserBtn.addEventListener("click", () => {
-  const name = addNameInput.value.trim();
-  const role = addRoleSelect.value;
+// Add user (admin only)
+if (addUserBtn) {
+  addUserBtn.addEventListener("click", () => {
+    if (!canAdd) {
+      setError("You do not have permission to add users.");
+      return;
+    }
 
-  if (!name) {
-    setError("Name is required to add a user.");
-    return;
-  }
+    const name = addNameInput.value.trim();
+    const role = addRoleSelect.value;
 
-  setError("");
-  const newUser = {
-    id: getNextId(),
-    name,
-    role
-  };
+    if (!name) {
+      setError("Name is required to add a user.");
+      return;
+    }
 
-  users.push(newUser);
+    setError("");
+    const newUser = {
+      id: getNextId(),
+      name,
+      role
+    };
 
-  addNameInput.value = "";
-  addRoleSelect.value = "User";
+    users.push(newUser);
 
-  currentPage = Math.ceil(getProcessedData().length / pageSize);
-  renderTable();
-});
+    addNameInput.value = "";
+    addRoleSelect.value = "User";
+
+    currentPage = Math.ceil(getProcessedData().length / pageSize);
+    renderTable();
+  });
+}
 
 // Inline edit (delegation on tbody)
 tableBody.addEventListener("click", (event) => {
@@ -341,6 +364,10 @@ tableBody.addEventListener("click", (event) => {
   const id = parseInt(row.dataset.id, 10);
 
   if (action === "edit") {
+    if (!canEdit) {
+      setError("You do not have permission to edit users.");
+      return;
+    }
     editingId = id;
     setError("");
     renderTable();
@@ -348,10 +375,16 @@ tableBody.addEventListener("click", (event) => {
 
   if (action === "cancel") {
     editingId = null;
+    setError("");
     renderTable();
   }
 
   if (action === "save") {
+    if (!canEdit) {
+      setError("You do not have permission to edit users.");
+      return;
+    }
+
     const nameInput = row.querySelector('input[name="editName"]');
     const roleSelect = row.querySelector('select[name="editRole"]');
 

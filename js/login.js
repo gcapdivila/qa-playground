@@ -33,6 +33,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     if (res.ok) {
       // Store token for future protected routes
       localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.role);
       localStorage.setItem("user", JSON.stringify(data.user));
 
       window.location.href = "actions.html";
@@ -46,3 +47,16 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     errorBox.classList.remove("hidden");
   }
 });
+
+// Allow pressing Enter to submit the login form
+const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
+
+function triggerLoginOnEnter(event) {
+  if (event.key === "Enter") {
+    document.getElementById("loginBtn").click();
+  }
+}
+
+usernameInput.addEventListener("keydown", triggerLoginOnEnter);
+passwordInput.addEventListener("keydown", triggerLoginOnEnter);

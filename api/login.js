@@ -5,18 +5,19 @@ export default function handler(req, res) {
 
   const { username, password } = req.body;
 
-  // Simulated credentials
-  const validUser = username === "admin" && password === "admin";
+  const USERS = {
+    admin: { password: "admin", role: "admin" },
+    editor: { password: "editor", role: "editor" },
+    user: { password: "user", role: "user" }
+  };
 
-  if (validUser) {
-    return res.status(200).json({ 
-      token: "abc123",
-      user: {
-        username: "admin",
-        role: "administrator"
-      }
-    });
+  if (!USERS[username] || USERS[username].password !== password) {
+    return res.status(401).json({ error: "Invalid credentials" });
   }
 
-  return res.status(401).json({ error: "Invalid username or password" });
+  return res.status(200).json({
+    token: "fake-jwt-token-" + USERS[username].role,
+    role: USERS[username].role,
+    user: username
+  });
 }
