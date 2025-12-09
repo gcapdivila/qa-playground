@@ -34,7 +34,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
       // Store token for future protected routes
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("user", data.user);
 
       window.location.href = "actions.html";
     } else {
